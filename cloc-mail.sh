@@ -10,13 +10,12 @@ SMTPSERVER='mail.michaellinder.net'
 
 usage ()
 {
-echo "Usage: cloc-mail.sh <scan target url> <destination email>"
-exit
+    echo "Usage: cloc-mail.sh <scan target url> <destination email>"
+    exit
 }
 
-if [ "$#" -ne 2 ]
-then
-usage
+if [ "$#" -ne 2 ]; then
+    usage
 fi
 
 echo -n "SMTP username on $SMTPSERVER: "
@@ -28,8 +27,8 @@ echo
 
 # install cloc if not already present in this directory
 if [ ! -d "cloc" ]; then
-echo "Downloading cloc..."
-git clone $CLOCURL
+    echo "Downloading cloc..."
+    git clone $CLOCURL
 fi
 
 # get destination folder of target - will be the last part of the git url without the suffix
@@ -37,8 +36,8 @@ DESTFOLDER=`echo $TARGET | sed s_^.*/__g | sed s/.git$//g`
 
 # clone target repository if project folder not already present in this directory
 if [ ! -d "$DESTFOLDER" ]; then
-echo "Downloading target repository..."
-git clone $TARGET
+    echo "Downloading target repository..."
+    git clone $TARGET
 fi
 
 # perform CLOC scan on target directory.  Send output to STDOUT and OUTFILE
