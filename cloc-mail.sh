@@ -8,6 +8,17 @@ MAILRCPT=$2
 OUTFILE='cloc.out'
 SMTPSERVER='mail.michaellinder.net'
 
+usage ()
+{
+echo "Usage: cloc-mail.sh <scan target url> <destination email>"
+exit
+}
+
+if [ "$#" -ne 2 ]
+then
+usage
+fi
+
 echo -n "SMTP username on $SMTPSERVER: "
 read SMTPUSERNAME
 echo -n "SMTP password: "
